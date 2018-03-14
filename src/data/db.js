@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const config = require("./config");
 const logger = require("./logger");
 const UserModel = require("./models/user");
+const VetModel = require("./models/vet");
+const ShelterModel = require("./models/shelter");
 
 class DB {
     constructor() {
@@ -33,6 +35,8 @@ class DB {
     }
     loadSchame() {
         this.userModel = new UserModel(this.connection).getModel();
+        this.vetModel = new UserModel(this.connection).getModel();
+        this.shelterModel = new ShelterModel(this.connection).getModel();
     }
 }
 
