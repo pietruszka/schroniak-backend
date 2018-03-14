@@ -1,0 +1,29 @@
+{
+  "name": "schroniak-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pietruszka/schroniak-backend.git"
+  },
+  "author": "Piotr Pietruszka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pietruszka/schroniak-backend/issues"
+  },
+  "homepage": "https://github.com/pietruszka/schroniak-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.2.0",
+    "mongoose": "^5.0.9",
+    "ramda": "^0.25.0",
+    "winston": "^2.4.0",
+    "winston-transport": "^3.0.1"
+  }
+}
