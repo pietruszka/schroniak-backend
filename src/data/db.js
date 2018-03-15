@@ -4,6 +4,7 @@ const logger = require("./logger");
 const UserModel = require("./models/user");
 const VetModel = require("./models/vet");
 const ShelterModel = require("./models/shelter");
+const PetModel = require("./models/pet");
 
 class DB {
     constructor() {
@@ -37,6 +38,7 @@ class DB {
         this.userModel = new UserModel(this.connection).getModel();
         this.vetModel = new UserModel(this.connection).getModel();
         this.shelterModel = new ShelterModel(this.connection).getModel();
+        this.petModel = new PetModel(this.connection).getModel();
     }
 }
 
