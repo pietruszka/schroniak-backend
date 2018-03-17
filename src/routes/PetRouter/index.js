@@ -7,7 +7,7 @@ const {
     deletePet
 } = require('./controller');
 
-class RegisterRoute {
+class PetRoute {
     constructor() {
         this.router = Router();
         this.router.get('/api/pet/:id', getPet);
@@ -21,4 +21,4 @@ class RegisterRoute {
     }
 }
 
-module.exports = RegisterRoute;
+module.exports = PetRoute;

@@ -36,7 +36,7 @@ class DB {
     }
     loadSchame() {
         this.userModel = new UserModel(this.connection).getModel();
-        this.vetModel = new UserModel(this.connection).getModel();
+        this.vetModel = new VetModel(this.connection).getModel();
         this.shelterModel = new ShelterModel(this.connection).getModel();
         this.petModel = new PetModel(this.connection).getModel();
     }
