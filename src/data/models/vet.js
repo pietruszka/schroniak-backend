@@ -1,22 +1,24 @@
 const mongoose = require("mongoose");
 
 
-class UserModel {
+class VetModel {
     constructor(connection) {
-        this.model = connection.model("User", this._userModel(), "UserSchroniak");
+        this.model = connection.model("Vet", this._vetModel(), "VetSchroniak");
     }
     getModel() {
         return this.model;
     }
 
-    _userModel() {
+    _vetModel() {
         return new mongoose.Schema({
             name: String,
             lastName: String,
             email: String,
-            phoneNr: Number
+            phoneNr: Number,
+            city: String,
+            licenceNr: Number
         });
     }
 }
 
-module.exports = UserModel;
+module.exports = VetModel;
