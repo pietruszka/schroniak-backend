@@ -1,31 +1,30 @@
-const Pet = (require("./../../data/db").getConnection()).model("Pet");
+const Shelter = (require("./../../data/db").getConnection()).model("Shelter");
 
-
-const getPet = async (req, res) => {
+const getShelter = async (req, res) => {
     try {
-        let foundPets;
+        let foundShelters;
         let id = req.params.id;
         let skip = req.query.skip;
         let limit = req.query.limit;
         if(id) {
-            foundPets = await Pet.findById(id);
+            foundShelters = await Shelter.findById(id);
             res
                 .status(200)
                 .json({
                     success: true,
-                    result: foundPets
+                    result: foundShelters
                 });
         } else {
-            if(skip & limit) foundPets = await Pet.find(id).skip(Number(skip)).limit(Number(limit));
-            else if(limit) foundPets = await Pet.find(id).limit(Number(limit));
-            else if(skip) foundPets = await Pet.find(id).skip(Number(skip));
-            else foundPets = await Pet.find(id);
+            if(skip & limit) foundShelters = await Shelter.find(id).skip(Number(skip)).limit(Number(limit));
+            else if(limit) foundShelters = await Shelter.find(id).limit(Number(limit));
+            else if(skip) foundShelters = await Shelter.find(id).skip(Number(skip));
+            else foundShelters = await Shelter.find(id);
 
             res
                 .status(200)
                 .json({
                     success: true,
-                    result: foundPets
+                    result: foundShelters
                 });
         }
     } catch (err) {
@@ -38,44 +37,7 @@ const getPet = async (req, res) => {
 
 };
 
-const addPet = async (req, res) => {
-    try {
-        req.checkBody('name', 'Invalid name field').notEmpty();
-
-        var errors = req.validationErrors();
-        if (errors) {
-            res.send(errors);
-            return;
-        } else {
-            let name = req.body.name;
-
-            let result = await new Pet({
-                name,
-            }).save();
-
-            if(result) res
-                .status(200)
-                .json({
-                    success: true,
-                    result,
-                });
-            else res
-                .status(403)
-                .json({
-                    success: false,
-                    message: 'Adding pet error',
-                });
-        }
-    } catch (err) {
-        res.status(403)
-            .json({
-                success: false,
-                message: 'Endpoint err ' + err.toString(),
-            });
-    }
-};
-
-const changePet = async (req, res) => {
+const changeShelter = async (req, res) => {
     try {
         req.checkBody('name', 'Invalid name field').optional();
         req.checkParams('id', 'Invalid name field').notEmpty();
@@ -90,7 +52,7 @@ const changePet = async (req, res) => {
             let changeObject = {};
             if(req.body.name) changeObject.name = req.body.name;
 
-            let result = await Pet.findByIdAndUpdate(id, changeObject);
+            let result = await Shelter.findByIdAndUpdate(id, changeObject);
             if(result) res
                 .status(200)
                 .json({
@@ -113,7 +75,7 @@ const changePet = async (req, res) => {
     }
 };
 
-const deletePet = async (req, res) => {
+const deleteShelter = async (req, res) => {
     try {
         req.checkParams('id', 'Invalid name field').notEmpty();
         req.checkParams('id', 'Expect mongo object id field').isMongoId();
@@ -125,7 +87,7 @@ const deletePet = async (req, res) => {
         } else {
             let id = req.params.id;
             if(id) {
-                let result = await Pet.findByIdAndRemove(id);
+                let result = await Shelter.findByIdAndRemove(id);
                 if(result) res
                     .status(200)
                     .json({
@@ -135,7 +97,7 @@ const deletePet = async (req, res) => {
                     .status(403)
                     .json({
                         success: false,
-                        message: 'Pet doesnt exist',
+                        message: 'Shelter doesnt exist',
                     });
             } else res
                 .status(403)
@@ -155,8 +117,7 @@ const deletePet = async (req, res) => {
 };
 
 module.exports = {
-    getPet,
-    addPet,
-    changePet,
-    deletePet,
+    getShelter ,
+    changeShelter,
+    deleteShelter
 };

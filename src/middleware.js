@@ -1,6 +1,7 @@
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const express = require('express');
+const ExpressVaidator = require('express-validator');
 const Router = express.Router;
 const logger = require("./data/logger");
 const db = require("./data/db");
@@ -14,6 +15,7 @@ class Middleware {
         }));
         this.router.use(cors());
         this.router.use(express.static('public'));
+        this.router.use(ExpressVaidator());
         logger;
         db;
     }

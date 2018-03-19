@@ -11,8 +11,9 @@ class RegisterRoute {
     constructor() {
         this.router = Router();
         this.router.get('/api/pet/:id', getPet);
+        this.router.get('/api/pet', getPet);
         this.router.post('/api/pet', addPet);
-        this.router.put('/api/pet', changePet);
+        this.router.put('/api/pet/:id', changePet);
         this.router.delete('/api/pet/:id', deletePet);
     }
 
